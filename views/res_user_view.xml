@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="user_warehouse_rel" model="ir.ui.view">
+            <field name="name">Add warehouse to user</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='sel_groups_1_9_10']" position="after">
+                    <field name="stock_warehouse_id" options="{'no_create': True}" domain="['|', ('company_id', 'in', company_ids), ('company_id', '=', company_id)]"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="user_warehouse_tree" model="ir.ui.view">
+            <field name="name">Add warehouse to user tree</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='login']" position="after">
+                    <field name="stock_warehouse_id"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
